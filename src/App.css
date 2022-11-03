@@ -1,3 +1,7 @@
+body{
+  padding: 0 24px ;
+}
+
 header{
   display: flex;
   justify-content: center;
@@ -55,7 +59,26 @@ header{
   width: 100%;
   box-sizing: border-box;
   padding-left: 15px;
+  transition: all 0.2s ease;
 }
+
+.copy-link{
+  margin-left: auto;
+  color: transparent;
+  font-size: 15px;
+  padding-right: 24px;
+}
+
+.emoji-line:hover{
+  cursor: pointer;
+  background-color: #F8EFEF;
+  transition: all 0.2s ease;
+}
+
+.emoji-line:hover > .copy-link{
+  color: rgb(79, 79, 79);
+}
+
 
 .end-of-list{
   display: flex;
