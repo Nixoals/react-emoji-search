@@ -33,6 +33,7 @@ function App() {
 						if (emoji.keywords.includes(search)) {
 							return <EmojiList key={index} title={emoji.title} symbol={emoji.symbol}></EmojiList>;
 						}
+						return '';
 					})}
 				<div className="end-of-list">
 					<div>"..."</div>
