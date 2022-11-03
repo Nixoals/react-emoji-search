@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import data from './data.json';
+import { useState } from 'react';
 import './App.css';
 
+import EmojiList from './components/EmojiList';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [search, setSearch] = useState('');
+
+	return (
+		<>
+			<header>
+				<h1>😎 Emoji Search 😎</h1>
+			</header>
+
+			<div className="emoji-search">
+				<input
+					onChange={(search) => {
+						setSearch(search.target.value);
+					}}
+					type={'text'}
+					placeholder="what emoji are you looking for ?"
+					value={search}
+				></input>
+			</div>
+			<section className="emoji-container">
+				{!search &&
+					data.slice(0, 18).map((emoji, index) => {
+						return <EmojiList key={index} title={emoji.title} symbol={emoji.symbol}></EmojiList>;
+					})}
+				{search &&
+					data.map((emoji, index) => {
+						if (emoji.keywords.includes(search)) {
+							return <EmojiList key={index} title={emoji.title} symbol={emoji.symbol}></EmojiList>;
+						}
+					})}
+				<div className="end-of-list">
+					<div>"..."</div>
+				</div>
+			</section>
+		</>
+	);
 }
 
 export default App;
