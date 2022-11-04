@@ -6,7 +6,7 @@ import EmojiList from './components/EmojiList';
 
 function App() {
 	const [search, setSearch] = useState('');
-
+	const tab = [];
 	return (
 		<>
 			<header>
@@ -31,7 +31,12 @@ function App() {
 				{search &&
 					data.map((emoji, index) => {
 						if (emoji.keywords.includes(search)) {
-							return <EmojiList key={index} title={emoji.title} symbol={emoji.symbol}></EmojiList>;
+							tab.push(index);
+							if (tab.length < 20) {
+								return <EmojiList key={index} title={emoji.title} symbol={emoji.symbol}></EmojiList>;
+							} else {
+								return null;
+							}
 						}
 						return null;
 					})}
